@@ -1,0 +1,6 @@
+@import "styles/variables/variables.colors";
+
+.page-item.active .page-link {
+    background-color: $primaryBlue;
+    border-color: $primaryBlue;
+}

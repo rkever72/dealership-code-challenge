@@ -1,0 +1,61 @@
+<template>
+    <require from="bootstrap-select/dist/css/bootstrap-select.min.css"></require>
+    <require from="bootstrap-slider/dist/css/bootstrap-slider.min.css"></require>
+    <require from="./filters.scss"></require>
+
+    <div id="filters">
+        <div class="filters-container form-inline" show.bind="initialized">
+            <select
+                ref="refMakeSelector"
+                value.bind="filters.makes"
+                class="form-control mr-2"
+                data-none-selected-text="Select Make"
+                multiple>
+                <option repeat.for="make of vehicleAttrs.makes">${make}</option>
+            </select>
+
+            <select
+                ref="refModelSelector"
+                value.bind="filters.models"
+                class="form-control mr-2"
+                data-none-selected-text="Select Model"
+                multiple>
+                <option value.bind="null" disabled if.bind="!modelsByMaker || modelsByMaker.length === 0">Please choose at least 1 make first</option>
+                <optgroup repeat.for="group of modelsByMaker" label="${group.make}">
+                    <option repeat.for="model of group.models" value="${group.make}:${model}">${model}</option>
+                </optgroup>
+            </select>
+
+            <select
+                ref="refColorSelector"
+                value.bind="filters.colors"
+                class="form-control mr-2"
+                data-none-selected-text="Select Color"
+                multiple>
+                <option repeat.for="color of vehicleAttrs.colors" data-content="<span class='badge pr-2' style='${colorBadge(color)}'>&nbsp;</span> ${color}">${color}</option>
+            </select>
+
+            <div class="dropdown mr-2">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Year Range: ${filters.yearStart} &mdash; ${filters.yearEnd}
+                </button>
+                <div ref="refYearDropdown" class="dropdown-menu year-dropdown p-3" aria-labelledby="dropdownMenuButton" click.delegate="keepOpen($event)">
+                    <small class="mr-2">${sliderSettings.min}</small>&nbsp;
+                    <input ref="refSliderInput" type="text" />
+                    &nbsp;<small class="ml-2">${sliderSettings.max}</small>
+                </div>
+            </div>
+
+            <button type="button" click.delegate="clearFilters()" class="btn btn-dark mr-5" title="Click to reset the filters to default">Reset<i class="ml-2 fas fa-filter"></i></button>
+
+            <select
+                ref="refSortBySelector"
+                value.bind="sortBy"
+                class="form-control"
+                data-none-selected-text="Sort By">
+                <option repeat.for="option of sortByItems" value.bind="option.id" class="capitalize">Sort by ${option.name}</option>
+            </select>
+        </div>
+    </div>
+
+</template>

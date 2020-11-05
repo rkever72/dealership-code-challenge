@@ -1,0 +1,14 @@
+<template>
+    <require from="./cp-spinner.scss"></require>
+    <div class="cp-spinner-modal ${modal ? 'active' : ''}"></div>
+
+    <div class="cp-spinner-container--outer">
+        <div class="cp-spinner-container--inner">
+            <span class="cp-spinner-circle"></span>
+            <span class="cp-spinner-content font-light">
+        <slot></slot>
+    </span>
+        </div>
+    </div>
+</template>
+

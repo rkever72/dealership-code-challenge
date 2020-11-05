@@ -1,0 +1,41 @@
+<template>
+    <a href="#" click.delegate="dialog()">
+        <img src="/images/no-Image-available.png" alt="Sorry...no image available for this vehicle">
+
+        <div class="content container mt-2">
+            <div class="row mb-2">
+                <div class="col-7">
+                    <strong>${vehicle.year}</strong><br>
+                    <span class="font-light">${vehicle.make}</span><br>
+                    <small class="model">${vehicle.model}</small>
+                </div>
+                <div class="col-5 text-right font-light">
+                    <h4 class="mb-0">${vehicle.price | currency}</h4>
+                    <span class="text-muted">${vehicle.miles | number}<small>miles</small></span>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="row mb-2">
+                <div class="col-4">
+                    <i class="fas fa-paint-roller text-muted"></i> ${vehicle.color}
+                </div>
+                <div class="col-4">
+                    <i class="fas fa-gas-pump text-muted"></i> Hwy<br>
+                    ${vehicle.highwayMileage.high} / ${vehicle.highwayMileage.low}
+                </div>
+                <div class="col-4">
+                    <i class="fas fa-gas-pump text-muted"></i> City<br>
+                    ${vehicle.cityMileage.high} / ${vehicle.cityMileage.low}
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="description mb-2 small">
+                <i class="fas fa-info-circle color-primary--blue"></i><cp-truncate content.bind="vehicle.description" max-chars="65"></cp-truncate>
+            </div>
+        </div>
+    </a>
+</template>

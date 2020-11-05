@@ -1,0 +1,10 @@
+<template>
+    <require from="./pagination.scss"></require>
+    <nav aria-label="Page navigation example" class="float-right">
+        <ul class="pagination">
+            <li class="page-item ${paging.currentPage === 1 ? 'disabled' : ''}"><a class="page-link" click.delegate="navigatePaging('prev')" href="#"><i class="mr-1 fas fa-angle-left"></i>Previous</a></li>
+            <li class="page-item ${page === paging.currentPage ? 'active' : ''}" repeat.for="page of paging.pages"><a click.delegate="navigatePaging(page)" class="page-link page-number" href="#">${page}</a></li>
+            <li class="page-item ${paging.currentPage === paging.endPage ? 'disabled' : ''}"><a class="page-link" click.delegate="navigatePaging('next')" href="#">Next<i class="ml-1 fas fa-angle-right"></i></a></li>
+        </ul>
+    </nav>
+</template>

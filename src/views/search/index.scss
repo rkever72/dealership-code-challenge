@@ -1,0 +1,42 @@
+#results {
+    .vehicle-item {
+        margin: 10px 20px 10px 0;
+        display: inline-block;
+        height: 460px;
+        float: left;
+
+        img { width: 313px; }
+
+        a {
+            color: inherit;
+            height: 100%;
+            display: block;
+            width: 315px;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1),0 6px 20px 0 rgba(0,0,0,0.1);
+            transition: all 0.3s ease, color 0.3s ease;
+
+            &:hover {
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.2);
+                border-color: #39B5FD;
+            }
+
+            .model {
+                text-transform: capitalize;
+            }
+        }
+    }
+
+    .zero-results {
+        margin: auto;
+        margin-top: 50px;
+        max-width: 800px;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.2);
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    #results {
+        ul { padding: 0; }
+    }
+}

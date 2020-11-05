@@ -1,0 +1,7 @@
+$primaryBlue: #39B5FD;
+@function primaryBlueRgba($alpha:1) {
+    @return rgba(57, 181, 253, $alpha);
+}
+
+$primaryGrayLight: #b4b0af;
+$primaryGrayDark: #545455;

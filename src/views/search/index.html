@@ -1,0 +1,31 @@
+<template>
+    <require from="./filters"></require>
+    <require from="./vehicle"></require>
+    <require from="./pagination"></require>
+    <require from="./index.scss"></require>
+
+    <let has-vehicles.bind="vehicles.list && vehicles.list.length > 0"></let>
+
+    <filters filters.bind="filters" vehicles.bind="vehicles"></filters>
+
+    <cp-spinner if.bind="loading" modal.bind="firstLoad">Loading&hellip;</cp-spinner>
+
+    <div id="results" if.bind="!loading">
+        <div if.bind="hasVehicles">
+            <small>Showing <span class="badge badge-dark">${vehicles.list.length}</span> out of <span class="badge badge-dark">${vehicles.paging.totalItems}</span> vehicles that match your search</small>
+        </div>
+
+        <div if.bind="!hasVehicles" class="zero-results card text-white bg-dark">
+            <div class="card-body text-center">
+                <img src="/images/sadface.png" alt="Zero Results" class="mb-3">
+                <h5 class="card-title">Ummm...sorry! We're just plain out of those.</h5>
+            </div>
+        </div>
+
+        <ul class="clearfix list-unstyled" else>
+            <li as-element="vehicle" repeat.for="vehicle of vehicles.list" vehicle.bind="vehicle" class="list-unstyled vehicle-item"></li>
+        </ul>
+
+        <pagination if.bind="hasVehicles && (vehicles.paging.totalItems > vehicles.list.length)" paging.bind="vehicles.paging"></pagination>
+    </div>
+</template>

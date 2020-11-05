@@ -1,0 +1,17 @@
+
+@import "./variables/variables.colors";
+
+.color-primary--blue {
+    color: $primaryBlue;
+}
+
+.color-gray--light {
+    color: $primaryGrayLight;
+}
+.color-gray--dark {
+    color: $primaryGrayDark;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}

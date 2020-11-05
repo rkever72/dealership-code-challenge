@@ -1,0 +1,40 @@
+@import "./variables/variables.colors";
+
+.form-control, .form-control-lg, .form-control-sm, .btn, .dropdown-menu {
+    border-radius: 0;
+    &::placeholder {
+        font-weight: 300;
+    }
+}
+
+.page-link {
+    color: $primaryBlue;
+
+    &:hover {
+        background-color: $primaryBlue;
+        color: #fff;
+    }
+}
+
+.popover {
+    background-color: #333;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.2);
+
+    .popover-header { background-color: #333; }
+    .arrow:before, .arrow:after {
+        border-right-color: #333;
+        border-left-color: #333;
+    }
+    .popover-body, .popover-header { color: #fff; }
+}
+
+.modal {
+    .modal-header {
+        background-color: #333;
+        color: #fff;
+
+        .close {
+            color: #fff;
+        }
+    }
+}
