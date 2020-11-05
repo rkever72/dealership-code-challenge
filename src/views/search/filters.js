@@ -37,16 +37,16 @@ export class Filters {
         value: [0, 0]
     };
     sortByItems = [
-        { id: 'make:asc', name: 'Make Asc' },
-        { id: 'make:desc', name: 'Make Desc' },
-        { id: 'model:asc', name: 'Model Asc' },
-        { id: 'model:desc', name: 'Model Desc' },
-        { id: 'miles:asc', name: 'Lowest Mileage' },
-        { id: 'miles:desc', name: 'Highest Mileage' },
-        { id: 'price:asc', name: 'Lowest Price' },
-        { id: 'price:desc', name: 'Highest Price' },
-        { id: 'year:asc', name: 'Oldest Vehicle' },
-        { id: 'year:desc', name: 'Newest Vehicle' }
+        { id: 'make:asc', name: 'Make Asc <i class="fas fa-sort-amount-down-alt"></i>' },
+        { id: 'make:desc', name: 'Make Desc <i class="fas fa-sort-amount-up"></i>' },
+        { id: 'model:asc', name: 'Model Asc <i class="fas fa-sort-amount-down-alt"></i>' },
+        { id: 'model:desc', name: 'Model Desc <i class="fas fa-sort-amount-up"></i>' },
+        { id: 'miles:asc', name: 'Lowest Mileage <i class="fas fa-sort-amount-down-alt"></i>' },
+        { id: 'miles:desc', name: 'Highest Mileage <i class="fas fa-sort-amount-up"></i>' },
+        { id: 'price:asc', name: 'Lowest Price <i class="fas fa-sort-amount-down-alt"></i>' },
+        { id: 'price:desc', name: 'Highest Price <i class="fas fa-sort-amount-up"></i>' },
+        { id: 'year:asc', name: 'Oldest Vehicle <i class="fas fa-sort-amount-down-alt"></i>' },
+        { id: 'year:desc', name: 'Newest Vehicle <i class="fas fa-sort-amount-up"></i>' }
     ];
     vehiclesGateway;
     filterEventAggregator;

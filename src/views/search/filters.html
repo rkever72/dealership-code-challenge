@@ -32,7 +32,10 @@
                 class="form-control mr-2"
                 data-none-selected-text="Select Color"
                 multiple>
-                <option repeat.for="color of vehicleAttrs.colors" data-content="<span class='badge pr-2' style='${colorBadge(color)}'>&nbsp;</span> ${color}">${color}</option>
+                <option repeat.for="color of vehicleAttrs.colors"
+                        data-content="<span class='badge pr-2' style='${colorBadge(color)}'>&nbsp;</span> ${color}">
+                    ${color}
+                </option>
             </select>
 
             <div class="dropdown mr-2">
@@ -46,14 +49,21 @@
                 </div>
             </div>
 
-            <button type="button" click.delegate="clearFilters()" class="btn btn-dark mr-5" title="Click to reset the filters to default">Reset<i class="ml-2 fas fa-filter"></i></button>
+            <button type="button" click.delegate="clearFilters()" class="btn btn-dark mr-5" title="Click to reset the filters to default">
+                Reset<i class="ml-2 fas fa-filter"></i>
+            </button>
 
             <select
                 ref="refSortBySelector"
                 value.bind="sortBy"
                 class="form-control"
                 data-none-selected-text="Sort By">
-                <option repeat.for="option of sortByItems" value.bind="option.id" class="capitalize">Sort by ${option.name}</option>
+                <option repeat.for="option of sortByItems"
+                        value.bind="option.id"
+                        class="capitalize"
+                        data-content="Sort by ${option.name}">
+                    ${option.name}
+                </option>
             </select>
         </div>
     </div>
