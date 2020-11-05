@@ -12,7 +12,11 @@
 
     <div id="results" if.bind="!loading">
         <div if.bind="hasVehicles">
-            <small>Showing <span class="badge badge-dark">${vehicles.list.length}</span> out of <span class="badge badge-dark">${vehicles.paging.totalItems}</span> vehicles that match your search</small>
+            <small>
+                Showing items <span class="badge badge-dark">${showingStartNum} - ${showingEndNum}</span>
+                out of <span class="badge badge-dark">${vehicles.paging.totalItems}</span>
+                vehicles that match your search
+            </small>
         </div>
 
         <div if.bind="!hasVehicles" class="zero-results card text-white bg-dark">

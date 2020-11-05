@@ -3,6 +3,7 @@ import { SearchEventAggregator } from './search-event-aggregator';
 import { VehiclesGateway } from 'gateways/vehicles-gateway';
 import { FiltersModel } from 'models/filters-model';
 import { VehiclesModel } from 'models/vehicles-model';
+import { PagingModel } from 'models/paging-model';
 
 @inject(SearchEventAggregator, VehiclesGateway)
 export class Index {
@@ -20,6 +21,8 @@ export class Index {
     firstLoad = true;
     currentPage = 1;
     refVehicleDetails;
+    showingStartNum;
+    showingEndNum;
 
 
     /*
@@ -34,16 +37,7 @@ export class Index {
         this.filterEventAggregator.subscribeFiltersChanged(() => this.searchUpdated(true));
         this.filterEventAggregator.subscribePagingChanged(() => this.searchUpdated(false));
 
-        await Promise.delay(1000); // faking slow API to show spinner
-
-        const response = await this.vehiclesGateway.getVehicles();
-
-        this.vehicles = new VehiclesModel(response);
-
-        this.loading = false;
-        this.firstLoad = false;
-
-        this.buildPaging();
+        this.setVehiclesAndFeatures();
     }
 
     detached() {
@@ -55,24 +49,33 @@ export class Index {
     /*
     * ViewModel Methods
     * */
+    async setVehiclesAndFeatures(filters = new FiltersModel(), paging = new PagingModel()) {
+        this.loading = true;
+
+        await Promise.delay(1000); // faking a delayed API to mimic real world delay
+
+        this.vehicles = await this.vehiclesGateway.getVehicles(filters, paging);
+
+        this.loading = false;
+        this.currentPage = 1;
+
+        this.buildShowingXtoYItems();
+    }
+
     searchUpdated(newSearch) {
         clearTimeout(this.debounceFilters);
         // debouncing so we don't call API too often, too soon
         this.debounceFilters = setTimeout(async() => {
-            this.loading = true;
             const paging = (!newSearch && this.vehicles && this.vehicles.paging) ? this.vehicles.paging : {};
 
-            await Promise.delay(500); // faking a delayed API to mimic real world delay
-
-            this.vehicles = await this.vehiclesGateway.getVehicles(this.filters, paging);
-
-            this.loading = false;
-            this.currentPage = 1;
-
-            this.buildPaging();
-        }, 500);
+            await this.setVehiclesAndFeatures(this.filters, paging);
+        }, newSearch ? 500 : 0);
     }
 
-    buildPaging() {
+    buildShowingXtoYItems() {
+        this.showingStartNum = (this.vehicles.paging.pageSize * (this.vehicles.paging.currentPage - 1)) + 1;
+        this.showingEndNum = this.showingStartNum + (this.vehicles.paging.pageSize - 1);
+
+        if (this.showingEndNum > this.vehicles.paging.totalItems) this.showingEndNum = this.vehicles.paging.totalItems;
     }
 }
