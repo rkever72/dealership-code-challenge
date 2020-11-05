@@ -16,7 +16,7 @@ export class App {
      * lifecycle method used to configure an aurelia instance
      */
     configureRouter(config, router) {
-        config.title = 'Aurelia';
+        config.title = 'Acme Auto Sales';
         config.map(this.routeConfig.routes);
 
         this.router = router;
